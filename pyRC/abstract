@@ -1,0 +1,15 @@
+Epidemic Forecasting Software: Lessons from the COVID-19 Pandemic
+
+The McMasterPandemic software was developed for COVID-19 forecasting. 
+
+However, the urgency of producing regular forecasts impeded software development. 
+
+To address these challenges, the macpan2 project was launched to create a more versatile public health modeling tool, integrating lessons learned from the pandemic: https://canmod.github.io/macpan2.
+
+Instead of building models from the ground up, applied modellers can leverage macpan2's library of predefined models as starting points.
+
+Additionally, macpan2 employs formal mathematical optimization for the efficient calibration of model parameters to data, even when these parameters evolve over time.
+
+In this presentation, I will demonstrate macpan2's application with a variety of examples including COVID-19, Mpox, and Measles.  
+
+I will conclude by comparing macpan2 with other tools like epiverse-trace and stan, highlighting the ongoing improvements and expansions in the set of open-source tools available for epidemiologists to build forecasting models.
