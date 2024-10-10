@@ -1,6 +1,6 @@
 ---
 title: "Epidemic Forecasting Software: Lessons from the COVID-19 Pandemic"
-subtitle: "Canadian Institute for Health Information (CIHI) -- 2024-10-10"
+subtitle: "Canadian Institute for Health Information -- 2024-10-10"
 author: "Steve Walker (McMaster University)"
 from: markdown+emoji
 format: 
@@ -25,6 +25,7 @@ knitr::opts_chunk$set(
 
 ## Acknowledgements
 
+-   Canadian Institute for Health Information for the invitation
 -   [CANMOD :cry:](https://canmod.net) and [PHAC](https://www.canada.ca/en/public-health) for funding 
 -   Original developers were real modellers (Ben Bolker, Jonathan
     Dushoff, David Earn, Mike Li, Irena Papst)
@@ -34,6 +35,7 @@ knitr::opts_chunk$set(
 
 ## Story
 
+* Why Models?
 * Background
 * Motivation
 * Software
@@ -44,6 +46,18 @@ knitr::opts_chunk$set(
 
 ## Story
 
+* Why Models? : <span style="color:red;">Why even bother at all with modelling?</span>
+* Background
+* Motivation
+* Software
+* Model Library
+* Calibration
+* Illustrations
+* Open-Source Tools
+
+## Story
+
+* Why Models?
 * Background : <span style="color:red;">McMasterPandemic software was developed for COVID-19 forecasting.</span>
 * Motivation
 * Software
@@ -54,6 +68,7 @@ knitr::opts_chunk$set(
 
 ## Story
 
+* Why Models?
 * Background
 * Motivation : <span style="color:red;">The urgency of producing regular forecasts during the pandemic impeded software development.</span>
 * Software
@@ -64,6 +79,7 @@ knitr::opts_chunk$set(
 
 ## Story
 
+* Why Models?
 * Background
 * Motivation
 * Software : <span style="color:red;">The `macpan2` project is a more versatile public health modelling tool being actively developed to address these challenges.</span>
@@ -74,6 +90,7 @@ knitr::opts_chunk$set(
 
 ## Story
 
+* Why Models?
 * Background
 * Motivation
 * Software
@@ -84,6 +101,7 @@ knitr::opts_chunk$set(
 
 ## Story
 
+* Why Models?
 * Background
 * Motivation
 * Software
@@ -94,16 +112,18 @@ knitr::opts_chunk$set(
 
 ## Story
 
+* Why Models?
 * Background
 * Motivation
 * Software
 * Model Library
 * Calibration
-* Illustrations : <span style="color:red;">I'll dig into a few examples of `macpan2` (COVID-19, Mpox, and Measles).</span>
+* Illustrations : <span style="color:red;">I'll dig into a few examples of work using `macpan2`.</span>
 * Open-Source Tools
 
 ## Story
 
+* Why Models?
 * Background
 * Motivation
 * Software
@@ -112,10 +132,9 @@ knitr::opts_chunk$set(
 * Illustrations
 * Open-Source Tools : <span style="color:red;">The set of open-source tools available for epidemiologists to build forecasting models is improving and expanding.</span>
 
+# Why Models?
 
-# Background
-
-McMasterPandemic was developed for COVID-19 modelling and forecasting.
+Why even bother at all with modelling?
 
 ## What do you get out of mechanistic modelling?
 
@@ -128,17 +147,26 @@ McMasterPandemic was developed for COVID-19 modelling and forecasting.
 * Counter-factuals (what-if scenarios)
 :::
 
-## Forecasting
+## Impact on the Public Health Agency of Canada (examples)
 
-* `McMasterPandemic` forecasts used for regular reports during the pandemic by chief public health officer$^1$
+* Measles 2024: [https://www.canada.ca/content/dam/phac-aspc/documents/services/emergency-preparedness-response/rapid-risk-assessments-public-health-professionals/rapid-risk-assessment-measles-public-health-implications-2024/rapid-risk-assessment-measles-public-health-implications-2024.pdf](https://www.canada.ca/content/dam/phac-aspc/documents/services/emergency-preparedness-response/rapid-risk-assessments-public-health-professionals/rapid-risk-assessment-measles-public-health-implications-2024/rapid-risk-assessment-measles-public-health-implications-2024.pdf)
+* MPox 2022: [https://onlinelibrary.wiley.com/doi/10.1002/jmv.29256](https://onlinelibrary.wiley.com/doi/10.1002/jmv.29256)
+* COVID-19 2021: [https://www.canada.ca/content/dam/phac-aspc/documents/services/diseases-maladies/coronavirus-disease-covid-19/epidemiological-economic-research-data/update-covid-19-canada-epidemiology-modelling-20210326-en.pdf](https://www.canada.ca/content/dam/phac-aspc/documents/services/diseases-maladies/coronavirus-disease-covid-19/epidemiological-economic-research-data/update-covid-19-canada-epidemiology-modelling-20210326-en.pdf)
 
-::: aside
-1: [https://www.canada.ca/content/dam/phac-aspc/documents/services/diseases-maladies/coronavirus-disease-covid-19/epidemiological-economic-research-data/update-covid-19-canada-epidemiology-modelling-20210326-en.pdf](https://www.canada.ca/content/dam/phac-aspc/documents/services/diseases-maladies/coronavirus-disease-covid-19/epidemiological-economic-research-data/update-covid-19-canada-epidemiology-modelling-20210326-en.pdf)
-:::
 
-## Forecasting
+# Background
+
+McMasterPandemic was developed for COVID-19 modelling and forecasting.
+
+
+## PHAC report involving `McMasterPandemic`
 
 ![](images/covid-chief-public-health-deck.png)
+
+## PHAC report involving `McMasterPandemic`
+
+![](covid-chief-public-health-deck-zoom.png)
+
 
 ## Forecasting
 
@@ -150,12 +178,8 @@ knitr::include_graphics("images/third_wave_prediction.gif")
 [mac-theobio.github.io/forecasts/outputs/ON_accuracy.html](https://mac-theobio.github.io/forecasts/outputs/ON_accuracy.html)
 :::
 
-## Federal Public Health
 
-* Measles 2024: https://www.canada.ca/content/dam/phac-aspc/documents/services/emergency-preparedness-response/rapid-risk-assessments-public-health-professionals/rapid-risk-assessment-measles-public-health-implications-2024/rapid-risk-assessment-measles-public-health-implications-2024.pdf
-* COVID-19 2021: https://www.canada.ca/content/dam/phac-aspc/documents/services/diseases-maladies/coronavirus-disease-covid-19/epidemiological-economic-research-data/update-covid-19-canada-epidemiology-modelling-20210326-en.pdf
-
-## McMasterPandemic COVID-19 Model
+## McMasterPandemic COVID-19 (Mechanistic) Model
 
 ![](images/flowchart1.png)
 
@@ -163,7 +187,7 @@ knitr::include_graphics("images/third_wave_prediction.gif")
 [mac-theobio.github.io/covid-19](https://mac-theobio.github.io/covid-19)
 :::
 
-## COVID-19 Vaccination Model
+## COVID-19 Vaccination (Mechanistic) Model
 
 ![](images/flowchart2.png){.absolute left=0 width="700"}
 
@@ -355,6 +379,23 @@ macpan1.5 = [github.com/mac-theobio/McMasterPandemic](https://github.com/mac-the
 macpan2 = [github.com/canmod/macpan2](https://github.com/canmod/macpan2)
 :::
 
+## Lessons
+
+<span style="color:red;">Mechanistic modelling</span>
+
+Fast simulations and calibrations
+
+Statistically principled
+
+Functionality-rich
+
+Modular model building
+
+Easy to use
+
+::: aside
+[canmod.github.io/macpan-book/index.html#vision-and-direction](https://canmod.github.io/macpan-book/index.html#vision-and-direction)
+:::
 
 ## Mechanistic Modelling
 
@@ -401,6 +442,23 @@ macpan2 = [github.com/canmod/macpan2](https://github.com/canmod/macpan2)
   * Maybe large language models are challenging this
   * Even ChatGPT should use mechanisms when explaining</span>
 
+## Lessons
+
+Mechanistic modelling
+
+<span style="color:red;">Fast simulations and calibrations</span>
+
+Statistically principled
+
+Functionality-rich
+
+Modular model building
+
+Easy to use
+
+::: aside
+[canmod.github.io/macpan-book/index.html#vision-and-direction](https://canmod.github.io/macpan-book/index.html#vision-and-direction)
+:::
 
 ## Computational Efficiency
 
@@ -410,24 +468,41 @@ Why is it important?  What goes into a picture like this?
 knitr::include_graphics("images/third_wave_prediction.gif")
 ```
 
+## Calibration -- Trajectory Matching
 
-## Computational Efficiency
-
-::: {.incremental}
-* Many simulations required.
-* Technology choice: Template Model Builder – TMB^1^.
-* Simulation code translated to C++ (fast).
-* Optimization uses automatic differentiation (fast).
-* Options for statistical approaches.
+::: columns
+::: {.column width="40%"}
+![](images/animation.gif)
 :::
 
+::: {.column width="60%"}
+> -   Toy simulated data example
+> -   "Observed" case reports -- dots
+> -   Model-predicted case reports -- line
+> -   Optimize transmission rate using maximum likelihood
+:::
+:::
+
+
+## Lessons
+
+Mechanistic modelling
+
+Fast simulations and calibrations
+
+Statistically principled
+
+Functionality-rich
+
+Modular model building
+
+<span style="color:red;">Easy to use</span>
 
 ::: aside
-1: [https://github.com/kaskr/adcomp](https://github.com/kaskr/adcomp)
+[canmod.github.io/macpan-book/index.html#vision-and-direction](https://canmod.github.io/macpan-book/index.html#vision-and-direction)
 :::
 
-
-## Thinking about Interface
+## Interface
 
 ```{r, eval = FALSE}
 spec = mp_tmb_model_spec(
@@ -437,12 +512,18 @@ spec = mp_tmb_model_spec(
 )
 ```
 
+::: incremental
+* Will slowly walk through what code means
+* Users interact by supplying `R` code
+* Will talk later about similar tools in Python
+* Goal: easy to read for modellers
+:::
 
 ::: aside
 [https://canmod.github.io/macpan2#hello-world](https://canmod.github.io/macpan2#hello-world)
 :::
 
-## Specifying Models
+## Specifying Per-Capita Flows
 
 ```{r, eval = FALSE}
 spec = mp_tmb_model_spec(
@@ -458,25 +539,18 @@ spec = mp_tmb_model_spec(
 :::
 
 
-## Specifying Models
-
-```{r, eval = FALSE}
-spec = mp_tmb_model_spec(
-  ...
-  mp_per_capita_flow("S", "I", "beta * I / N", "infection")
-  ...
-)
-```
-
+## Specifying Per-Capita Flows
 
 ![](images/SI.drawio.png)
 
-::: aside
-[https://canmod.github.io/macpan2#hello-world](https://canmod.github.io/macpan2#hello-world)
-:::
+* `S` : number of susceptible individuals
+* `I` : number of infectious individuals
+* $\beta$ : transmission rate
+* `N` : total population size
 
+## Specifying Per-Capita Flows
 
-## Specifying Models
+![](images/SI.drawio.png)
 
 ```{r, eval = FALSE}
 spec = mp_tmb_model_spec(
@@ -486,150 +560,17 @@ spec = mp_tmb_model_spec(
 )
 ```
 
-$$
-\begin{align}
-\text{infection} & = S (\beta I / N) = \beta SI/N \\
-\frac{dS}{dt} & = -\text{infection} \\
-\frac{dI}{dt} & = +\text{infection} \\
-\end{align}
-$$
 
 ::: aside
-Sorry for the math. This is how our users think.
+[https://canmod.github.io/macpan2#hello-world](https://canmod.github.io/macpan2#hello-world)
 :::
-
-## Simulation
-
-```{r echo = FALSE}
-library(macpan2)
-si = mp_tmb_model_spec(
-    before = S ~ N - I
-  , during = mp_per_capita_flow("S", "I", "beta * I / N", "infection")
-  , default = list(N = 100, I = 1, beta = 0.2)
-)
-library(ggplot2)
-library(dplyr)
-pp = (si
- |> mp_rk4()
- |> mp_simulator(time_steps = 50, outputs = c("I", "infection"))
- |> mp_trajectory()
- |> ggplot() 
- + geom_line(aes(time, value)) 
- + facet_wrap(~ matrix, scales = "free")
- + theme_bw()
-)
-ggsave("images/pp.png", pp, width = 4, height = 2.5)
-```
-
-::: {.incremental}
-* Philosophy: Do not reinvent the wheel
-* Simulation output standardized for all models
-* Easily plugs into existing popular tools
-* If this code looks strange  ... you should check out `ggplot2` and `dplyr`
-* _Many_ people have found them to be very useful
-:::
-
-```{r eval = FALSE}
-library(macpan2); library(ggplot2); library(dplyr)
-(spec
- |> mp_simulator(time_steps = 50, outputs = c("I", "infection"))
- |> mp_trajectory()
- 
- ## macpan2 ends here and standard 
- ## tools are used for plotting
- |> ggplot() 
- + geom_line(aes(time, value)) 
- + facet_wrap(~ matrix, scales = "free")
- + theme_bw()
-)
-```
-
-## Simulation
-
-![](images/pp.png){width="800"}
-
-## Specifying Models
-
-```{r, eval = FALSE}
-spec = mp_tmb_model_spec(
-  ...
-  , mp_per_capita_flow("S", "I", "beta * I / N", "infection")
-  , mp_per_capita_flow("I", "R", "gamma"       , "recovery" )
-  ...
-)
-```
-
-![](images/SIR.drawio.png){width="300"}
-
-## Specifying Models
-
-```{r, eval = FALSE}
-spec = mp_tmb_model_spec(
-  ...
-  , mp_per_capita_flow("S", "I", "beta * I / N", "infection")
-  , mp_per_capita_flow("I", "R", "gamma"       , "recovery" )
-  ...
-)
-```
-
-$$
-\begin{align}
-\text{infection} & = \beta SI/N \\
-\text{recovery} & = \gamma I \\
-\end{align}
-$$
-
-
-## Specifying Models
-
-```{r, eval = FALSE}
-spec = mp_tmb_model_spec(
-  ...
-  , mp_per_capita_flow("S", "I", "beta * I / N", "infection")
-  , mp_per_capita_flow("I", "R", "gamma"       , "recovery" )
-  ...
-)
-```
-
-$$
-\begin{align}
-\text{infection} & = \beta SI/N \\
-\text{recovery} & = \gamma I \\
-\frac{dS}{dt} & = -\text{infection} \\
-\frac{dI}{dt} & = -\text{recovery}+\text{infection} \\
-\frac{dR}{dt} & = +\text{recovery} \\
-\end{align}
-$$
-
-
-## Rendering Model Specifications
-
-::: {.incremental}
-* Showed how specification can be interpreted as an ODE.
-* Specifications with per-capita flows allow us to easily switch simulation strategies.
-:::
-
-```{r, eval = FALSE}
-mp_euler(spec)             ## difference equation (default)
-mp_rk4(spec)               ## ODE solver
-mp_euler_multinomial(spec) ## stochasticity
-mp_hazard(spec)            ## McMaster group hack during COVID emergency
-```
-
-::: aside
-[https://canmod.github.io/macpan2/articles/state_updaters](https://canmod.github.io/macpan2/articles/state_updaters)
-:::
-
 
 ## Drawing Flow Diagrams
 
-::: {.incremental}
-* Showed how specification can be used to simulate epidemic trajectories.
-* Specifications allow us to draw flow diagrams (experimental feature).
-:::
+Specifications allow us to draw flow diagrams.
 
 ```{r, echo = FALSE}
-spec = mp_tmb_library("starter_models", "sir", package = "macpan2")
+spec = mp_tmb_library("starter_models", "si", package = "macpan2")
 source(system.file("utils", "box-drawing.R", package = "macpan2"))
 ```
 
@@ -640,18 +581,14 @@ source(system.file("utils", "box-drawing.R", package = "macpan2"))
 )
 ```
 
-## Drawing Flow Diagrams
-
-* Showed how specification can be used to simulate epidemic trajectories.
-* Specifications allow us to draw flow diagrams (experimental feature).
-
 ```{r, echo = FALSE, fig.height=1, fig.width=5}
-spec = mp_tmb_library("starter_models", "sir", package = "macpan2")
+spec = mp_tmb_library("starter_models", "si", package = "macpan2")
 (spec 
   |> mp_layout_paths(x_gap = 0.3, y_gap = 0.3) 
   |> plot_flow_diagram(show_flow_rates = TRUE)
 )
 ```
+
 
 ## Drawing Flow Diagrams
 
@@ -683,35 +620,144 @@ spec = mp_tmb_library("starter_models", "macpan_base", package = "macpan2")
 ```
 
 
+## Flows to Differential Equations
 
-## Workshops on `macpan2`
+```{r, eval = FALSE}
+spec = mp_tmb_model_spec(
+  ...
+  mp_per_capita_flow("S", "I", "beta * I / N", "infection")
+  ...
+)
+```
 
-::: {.incremental}
+$$
+\begin{align}
+\text{infection} & = S \times \beta I / N
+\end{align}
+$$
 
-- **Exploration** : Compare simulations with each other & data
-- **Parameterization** : Calibrate/refine parameters for a specific question.
-- **Inference** : Use parameterized models to make inferences.
-- **Stratification** : Separate each compartment into many (e.g. by age, space, vaccination status).
 
-:::
+## Flows to Differential Equations
+
+```{r, eval = FALSE}
+spec = mp_tmb_model_spec(
+  ...
+  mp_per_capita_flow("S", "I", "beta * I / N", "infection")
+  ...
+)
+```
+
+$$
+\begin{align}
+\text{infection} & = S \times \beta I / N \\
+\frac{dS}{dt} & = -\text{infection} \\
+\frac{dI}{dt} & = +\text{infection} \\
+\end{align}
+$$
 
 ::: aside
-[https://canmod.github.io/macpan-workshop/syllabus](https://canmod.github.io/macpan-workshop/syllabus)
+Sorry for the math. This is how our users think.
 :::
 
-## Resources
 
-* [canmod.github.io/macpan2](https://canmod.github.io/macpan2)
-* [canmod.github.io/macpan2#installation](https://canmod.github.io/macpan2#installation)
-* [canmod.github.io/macpan2/articles/quickstart](https://canmod.github.io/macpan2/articles/quickstart)
-* [canmod.github.io/macpan2/articles/example_models](https://canmod.github.io/macpan2/articles/example_models)
-* [canmod.github.io/macpan2/articles/calibration](https://canmod.github.io/macpan2/articles/calibration)
+## Simulation Syntax
+
+::: {.incremental}
+* You do not need to read this code
+* Philosophy: Do not reinvent the wheel
+* Simulation output standardized for all models
+* Easily plugs into existing popular tools (e.g., `ggplot2`)
+:::
+
+```{r echo = FALSE}
+library(macpan2)
+si = mp_tmb_model_spec(
+    before = S ~ N - I
+  , during = mp_per_capita_flow("S", "I", "beta * I / N", "infection")
+  , default = list(N = 100, I = 1, beta = 0.2)
+)
+library(ggplot2)
+library(dplyr)
+pp = (si
+ |> mp_rk4()
+ |> mp_simulator(time_steps = 50, outputs = c("I", "infection"))
+ |> mp_trajectory()
+ |> ggplot() 
+ + geom_line(aes(time, value)) 
+ + facet_wrap(~ matrix, scales = "free")
+ + theme_bw()
+)
+ggsave("images/pp.png", pp, width = 4, height = 2.5)
+```
+
+```{r eval = FALSE}
+(spec
+ ## macpan2 part ----------------
+ |> mp_simulator(time_steps = 50, outputs = c("I", "infection"))
+ |> mp_trajectory()
+ 
+ ## not macpan2 ----------------
+ |> ggplot() 
+ + geom_line(aes(time, value)) 
+ + facet_wrap(~ matrix, scales = "free")
+ + theme_bw()
+)
+```
+
+## Simulation Syntax
+
+![](images/pp.png){width="800"}
+
+## Specifying Models
+
+```{r, eval = FALSE}
+spec = mp_tmb_model_spec(
+  ...
+  , mp_per_capita_flow("S", "I", "beta * I / N", "infection")
+  , mp_per_capita_flow("I", "R", "gamma"       , "recovery" )
+  ...
+)
+```
+
+![](images/SIR.drawio.png){width="300"}
+
+## Specifying Models
+
+```{r, eval = FALSE}
+spec = mp_tmb_model_spec(
+  ...
+  , mp_per_capita_flow("S", "I", "beta * I / N", "infection")
+  , mp_per_capita_flow("I", "R", "gamma"       , "recovery" )
+  ...
+)
+```
+
+$$
+\begin{align}
+\frac{dS}{dt} & = -\text{infection} \\
+\frac{dI}{dt} & = -\text{recovery}+\text{infection} \\
+\frac{dR}{dt} & = +\text{recovery} \\
+\end{align}
+$$
 
 
+## Rendering Model Specifications
 
-# Model Library
+::: {.incremental}
+* Showed how specification can be interpreted as an ODE.
+* Specifications with per-capita flows allow us to easily switch simulation strategies.
+:::
 
-Instead of building models from the ground up, applied modellers can leverage macpan2's library of predefined models as starting points.
+```{r, eval = FALSE}
+mp_euler(spec)             ## difference equation (default)
+mp_rk4(spec)               ## ODE solver
+mp_euler_multinomial(spec) ## stochasticity
+mp_hazard(spec)            ## McMaster group hack during COVID emergency
+```
+
+::: aside
+[https://canmod.github.io/macpan2/articles/state_updaters](https://canmod.github.io/macpan2/articles/state_updaters)
+:::
 
 
 
@@ -723,49 +769,10 @@ Instead of building models from the ground up, applied modellers can leverage ma
 [https://canmod.github.io/macpan2/articles/example_models](https://canmod.github.io/macpan2/articles/example_models)
 :::
 
-## Using the Model Library
-
-Read in example models using code like this.
-
-```{r, eval=FALSE}
-mp_tmb_library("starter_models", "hiv"        , package = "macpan2")
-mp_tmb_library("starter_models", "macpan_base", package = "macpan2")
-mp_tmb_library("starter_models", "ww"         , package = "macpan2")
-```
-
-## Using the Model Library
-
-```{r}
-mp_tmb_library("starter_models", "si", package = "macpan2")
-```
-
-
-# Calibration
-
-`macpan2` employs formal mathematical optimization for the efficient calibration of model parameters to data, even when these parameters evolve over time.
-
-## Calibration -- Trajectory Matching
-
-::: columns
-::: {.column width="40%"}
-![](images/animation.gif)
-:::
-
-::: {.column width="60%"}
-> -   Toy simulated data example
-> -   "Observed" case reports -- dots
-> -   Model-predicted case reports -- line
-> -   Optimize transmission rate using maximum likelihood
-:::
-:::
-
-## Calibration -- Interface
-
-TODO Maybe
 
 # Illustrations
 
-We can illustrate macpan2's application with a variety of examples including COVID-19, Mpox, and Measles.
+We illustrate `macpan2`'s application with some examples.
 
 ## Examples of Usage
 
@@ -802,7 +809,13 @@ We can illustrate macpan2's application with a variety of examples including COV
 :::
 
 
-## Works on 'Big' Problems
+## COVID-19 in Ontario
+
+* e.g., Public Health Ontario Forecasts
+
+![](images/pho_hosp_occ_prov_en.png)
+
+## COVID-19 in Ontario
 
 * e.g., Public Health Ontario Forecasts
 * ~100 parameters / five data-streams
@@ -814,21 +827,32 @@ We can illustrate macpan2's application with a variety of examples including COV
 ![](images/pho_seroprev_en.png){width="300"}
 
 
-## Effect of Vaccination 
+## COVID-19 in Newfoundland
 
-TODO: add this work maybe?
-
-## Measles
-
-* Vaccination in small (~1000-person) communities
-* Stochasticity generates final size distributions
-
-![](images/measles-vaxprop.png){width=700}
+![](images/zahra-simulation.png)
 
 ::: aside
-Collaboration with Mike Li (PHAC) to support public health response.
+Zahra Cook et al., ongoing project
 :::
 
+## COVID-19 in Newfoundland
+
+::: columns
+::: {.column width="60%"}
+![](images/zahra-simulation.png){width="600"}
+:::
+
+::: {.column width="40%"}
+> - Randomly spaced outbreaks caused by importation, not community spread
+> - Different from large provinces, driven by community spread
+> - Fitted blue line based on model dominated by community spread, hacked to look like importation
+> - Need to do better to finish this project (mechanism matters!)
+:::
+:::
+
+::: aside
+Zahra Cook et al., ongoing project
+:::
 
 ## Small-N Awareness Models
 
@@ -844,19 +868,6 @@ Collaboration with Mike Li (PHAC) to support public health response.
 2: [https://doi.org/10.1016/j.jtbi.2022.111378](https://doi.org/10.1016/j.jtbi.2022.111378)
 
 3: [https://github.com/canmod/macpan2/tree/main/inst/starter_models/awareness](https://github.com/canmod/macpan2/tree/main/inst/starter_models/awareness)
-:::
-
-## Small-N Awareness Models
-
-::: {.incremental}
-* Why am I showing you small-N awareness models?
-* Not because I think they are novel.
-* But because they illustrate the software.
-* Provides a simple but realistic example (good model of COVID in NFLD).
-* Vehicle for digging into epidemiological details of a particular example.
-* A colleague was interested in these models, and I wanted to try it out.
-* I made this model in 'no time'.
-* It is now in the [library](https://github.com/canmod/macpan2/tree/main/inst/starter_models/awareness).
 :::
 
 
@@ -904,21 +915,6 @@ title(
 
 :::
 
-## Small-N Awareness Models
-
-::: columns
-::: {.column width="50%"}
-
-![](images/longer_memory_awareness_model-ODE__solved_with_RK4_-1.png){width="500"}
-
-:::
-::: {.column width="50%"}
-::: {.incremental}
-* Doesn't matter what ODE solver is used. 
-* This is Runge-Kutta-4, the previous slide was Euler.
-:::
-:::
-:::
 
 ## Small-N Awareness Models
 
@@ -940,35 +936,6 @@ title(
 :::
 
 
-## Small-N Awareness Models
-
-::: columns
-::: {.column width="50%"}
-
-![](images/longer_memory_awareness_model-Process_Error__with_Euler_multinomial_-3.png){width="500"}
-
-:::
-::: {.column width="50%"}
-
-* The exact shape of the outbreak depends on the random seed.
-
-:::
-:::
-
-## Small-N Awareness Models
-
-::: columns
-::: {.column width="50%"}
-
-![](images/longer_memory_awareness_model-Process_Error__with_Euler_multinomial_-2.png){width="500"}
-:::
-::: {.column width="50%"}
-
-* Sometimes the random seed yields no outbreak at all.
-
-:::
-:::
-
 
 ## Small-N Awareness Models
 
@@ -983,61 +950,13 @@ title(
 ::: {.incremental}
 * Adding importation can yield randomly located outbreaks.
 * Importation keeps the infectious population from staying at zero.
+* Looks much more like Newfoundland.
+* I'll be in touch Zahra
 :::
 
 :::
 :::
 
-
-## Small-N Awareness Models
-
-::: columns
-::: {.column width="50%"}
-
-![](images/importation_awareness_model-Process_Error__with_Euler_multinomial_-2.png){width="500"}
-
-:::
-::: {.column width="50%"}
-
-::: {.incremental}
-* The location of the outbreaks depend on the pattern of importation.
-* The long period without outbreaks is caused by no importation.
-:::
-
-:::
-:::
-
-
-## Small-N Awareness Models
-
-```{r eval = FALSE, echo = FALSE}
-  , mp_per_capita_flow("I", "D", "gamma_d", "death")
-  , mp_per_capita_flow("E", "I", "mu", "progression")
-  , mp_per_capita_flow("I", "R", "gamma_r", "recovery")
-  , mp_per_capita_flow("H", "D", "gamma_h", "death")
-```
-```{r eval = FALSE}
-awareness_model = mp_tmb_model_spec(
-  ...
-  , mp_per_capita_flow("S", "E"
-      , "beta * I / N / (1 + (convolution(death, kernel)/delta_c)^k))"
-      , "infection"
-    )
-  ...
-)
-```
-
-## Small-N Awareness Models
-
-```{r eval = FALSE}
-importation_awareness_model = mp_tmb_insert(awareness_model
-  , expressions = list(
-        importation ~ rbinom(1, importation_prob)
-      , I ~ I + importation
-    )
-  ...
-)
-```
 
 
 # Open-Source Tools
@@ -1062,11 +981,32 @@ The set of open-source tools available for epidemiologists to build forecasting 
 :::
 
 
+## Resources on `macpan2`
+
+* [canmod.github.io/macpan2](https://canmod.github.io/macpan2)
+* [canmod.github.io/macpan2#installation](https://canmod.github.io/macpan2#installation)
+* [canmod.github.io/macpan2/articles/quickstart](https://canmod.github.io/macpan2/articles/quickstart)
+* [canmod.github.io/macpan2/articles/example_models](https://canmod.github.io/macpan2/articles/example_models)
+* [canmod.github.io/macpan2/articles/calibration](https://canmod.github.io/macpan2/articles/calibration)
+* [https://canmod.github.io/macpan-workshop/syllabus](https://canmod.github.io/macpan-workshop/syllabus)
+
+
 # Conclusions
 
 * Modelling adds value to data
 * Translating pandemic modeling experience into open-source software for future preparedness.
 * The `macpan2` project is part of this effort.
-* Ongoing incremental improvements.
+* Sustaining incremental improvement is difficult but critical for epi-focused tools.
 * Focus on model specification, simulation, and calibration.
 * Training modellers on `macpan2` (Interested?)
+
+
+## Acknowledgements
+
+-   Canadian Institute for Health Information for the invitation
+-   [CANMOD :cry:](https://canmod.net) and [PHAC](https://www.canada.ca/en/public-health) for funding 
+-   Original developers were real modellers (Ben Bolker, Jonathan
+    Dushoff, David Earn, Mike Li, Irena Papst)
+-   C++ programming (Weiguang Guan, Sharcnet), model library (Jen Freeman), and product models (Darren Flynn-Primrose)
+-   Amy Hurford, Lisa Kanary, Caroline Colijn, <span style="color:red;">Zahra Cook</span>, Claude Nadeau, Philippe Berthiaume, Evan Mitchell, Brian Gaas, Kevin Zhao, Maya Earn
+-   Irena Papst and Mike Li
